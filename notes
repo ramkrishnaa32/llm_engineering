@@ -1,0 +1,40 @@
+
+Claude API at https://console.anthropic.com/ from Anthropic
+Gemini API at https://ai.google.dev/gemini-api from Google
+
+Frontier Language Models
+
+1. Closed-Source Frontier Models
+These are proprietary models developed and hosted by leading AI companies:
+
+GPT – by OpenAI, https://chatgpt.com/
+Claude – by Anthropic, https://claude.ai/new
+Gemini – by Google, https://gemini.google.com/app?hl=en-IN
+Command R – by Cohere, https://cohere.com/
+Perplexity – by Perplexity AI, https://www.perplexity.ai/
+
+2. Open-Source Frontier Models
+These models are open-source and can often be fine-tuned, self-hosted, or run locally:
+
+Llama – by Meta
+Mixtral – by Mistral
+Qwen – by Alibaba Cloud
+Gemma – by Google
+Phi – by Microsoft
+
+Ways to Use Language Models
+
+1. Chat Interfaces
+    Examples: ChatGPT, Claude Web, Gemini Chat
+    Ideal for direct, conversational use
+
+2. Cloud APIs (LLM API Access)
+    Useful for integrating models into apps and services:
+    Frameworks: LangChain
+    Managed AI Cloud Services: Amazon Bedrock, Google Vertex AI, Azure Machine Learning
+
+3. Direct Inference
+    Run models locally or in a self-managed environment:
+    HuggingFace Transformers
+    Ollama for running models locally
+
