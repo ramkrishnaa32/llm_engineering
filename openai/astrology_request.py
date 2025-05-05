@@ -16,7 +16,7 @@ client = OpenAI(
     organization=orgId,
     project=projectId
 )
-monthly_horoscope =""" Aries, your May 2025 forecast shows an exciting month ahead with several planets in your sign, including Venus, Mercury, Saturn, and Neptune. This planetary lineup means you'll be exceptionally busy! Saturn's arrival in your sign brings a strong sense of determination. As Saturn enters your first house, you're essentially getting a fresh start while carrying all the wisdom you've gathered over recent years.
+monthly_horoscope ="""Aries, your May 2025 forecast shows an exciting month ahead with several planets in your sign, including Venus, Mercury, Saturn, and Neptune. This planetary lineup means you'll be exceptionally busy! Saturn's arrival in your sign brings a strong sense of determination. As Saturn enters your first house, you're essentially getting a fresh start while carrying all the wisdom you've gathered over recent years.
 Your money situation improves this month thanks to the Sun moving through your financial sector. The Full Moon on May 12 points to news about your finances or your partner's money matters. Your natural energy and strength are returning in full force after a period of reflection.
 Your personal relationships might go through some interesting changes this month. The Moon's helpful angle with Mars suggests you'll bring lots of excitement and passion to your interactions with others. However, be careful of possible misunderstandings as Venus forms a tense angle with the Moon. Make sure your communication is clear, and use your natural charm to smooth over any rough spots that might come up. Spending quality time with friends and family will bring you emotional satisfaction and happiness.
 For your health this month, focus on finding a balance between staying active and getting enough rest. With Chiron in your sign, old injuries or health issues might reappear, so pay attention to what your body is telling you. It's a good time to start new routines that mix physical activity with practices that calm your mind. Watch for signs of stress from daily pressures and give yourself time to recharge. Drinking enough water and eating a balanced diet will support your overall well-being.
@@ -46,7 +46,6 @@ Monthly Horoscope Content:
 {monthly_horoscope}
 \"\"\"
 """
-
 
 # Call OpenAI
 try:
