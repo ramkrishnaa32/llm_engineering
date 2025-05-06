@@ -16,6 +16,7 @@ client = OpenAI(
     organization=orgId,
     project=projectId
 )
+
 monthly_horoscope ="""Aries, your May 2025 forecast shows an exciting month ahead with several planets in your sign, including Venus, Mercury, Saturn, and Neptune. This planetary lineup means you'll be exceptionally busy! Saturn's arrival in your sign brings a strong sense of determination. As Saturn enters your first house, you're essentially getting a fresh start while carrying all the wisdom you've gathered over recent years.
 Your money situation improves this month thanks to the Sun moving through your financial sector. The Full Moon on May 12 points to news about your finances or your partner's money matters. Your natural energy and strength are returning in full force after a period of reflection.
 Your personal relationships might go through some interesting changes this month. The Moon's helpful angle with Mars suggests you'll bring lots of excitement and passion to your interactions with others. However, be careful of possible misunderstandings as Venus forms a tense angle with the Moon. Make sure your communication is clear, and use your natural charm to smooth over any rough spots that might come up. Spending quality time with friends and family will bring you emotional satisfaction and happiness.
@@ -29,17 +30,37 @@ Life's challenges help fine-tune us to match what the universe has in store. As 
 Your financial outlook is improving, your personal determination is strong, and your creative vision is clarifying. By month's end, you'll likely feel more centered in your purpose and ready to move forward with renewed confidence and direction."""
 
 prompt = f"""
-You are an astrology assistant. Extract specific and concise insights for the following categories from the given monthly horoscope content:
+System: You are an astrology assistant designed to analyze monthly horoscope content.
 
-- personal life
+User: Please extract concise insights under the following categories from the horoscope for {}:
+
+- personal_life
 - profession
 - health
 - emotions
 - travel
 - luck
-- general_prediction (optional but helpful for any content not directly fitting in the above)
+- general_prediction (optional but for extra insights)
 
-Use clear, paragraph-style natural language for each category. Avoid copying full paragraphs—summarize only the relevant parts. Return the response as a structured JSON with keys: love, travel, career, health, emotions, general_prediction.
+Instructions:
+- Summarize key points in clear, paragraph-style natural language.
+- Avoid repeating or copying full text.
+- Keep each category brief but informative.
+- Return the result as valid JSON in the format:
+
+{{
+  "horoscope": {{
+    "Aries": {{
+      "personal_life": "...",
+      "profession": "...",
+      "health": "...",
+      "emotions": "...",
+      "travel": "...",
+      "luck": "...",
+      "general_prediction": "..."
+    }}
+  }}
+}}
 
 Monthly Horoscope Content:
 \"\"\"
