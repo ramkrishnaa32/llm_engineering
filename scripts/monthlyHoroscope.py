@@ -32,7 +32,7 @@ Your financial outlook is improving, your personal determination is strong, and 
 prompt = f"""
 System: You are an astrology assistant designed to analyze monthly horoscope content.
 
-User: Please extract concise insights under the following categories from the horoscope for {}:
+User: Please extract concise insights under the following categories from the horoscope for {monthly_horoscope}:
 
 - personal_life
 - profession

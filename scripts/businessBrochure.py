@@ -51,9 +51,9 @@ class Website:
     def get_contents(self):
         return f"Webpage Title:\n{self.title}\nWebpage Contents:\n{self.text}\n\n"
 
-# ed = Website("https://edwarddonner.com")
-# # print(ed.get_contents())
-# # print(ed.links)
+ed = Website("https://qa.myastrotech.com/")
+print(ed.get_contents())
+print(ed.links)
 
 link_system_prompt = "You are provided with a list of links found on a webpage. \
 You are able to decide which of the links would be most relevant to include in a brochure about the company, \
