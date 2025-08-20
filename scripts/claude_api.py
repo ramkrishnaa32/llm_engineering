@@ -41,7 +41,3 @@ def call_claude(prompt, model="claude-opus-4-1-20250805", max_tokens=1000):
         return f"API Error: {e}"
     except Exception as e:
         return f"Unexpected error: {e}"
-
-# Response
-response = call_claude("Explain quantum computing in simple terms")
-print(response)

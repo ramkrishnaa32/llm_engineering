@@ -7,18 +7,27 @@ load_dotenv(override=True)
 api_key = os.getenv("GOOGLE_API_KEY")
 if not api_key:
     raise ValueError("The environment variable GOOGLE_API_KEY is not set!")
-
-# Configure the genai library
-genai.configure(api_key=api_key)
-
-# Create a GenerativeModel instance
-model = genai.GenerativeModel("gemini-2.5-pro")
-
-# Generate content
-response = model.generate_content("Explain how AI works in few lines")
-
-# print the response text
-if response and response.candidates:
-    print(response.candidates[0].content.parts[0].text)
 else:
-    print("No response generated.")
+    genai.configure(api_key=api_key)
+
+def call_gemini(prompt, model="gemini-2.5-pro"):
+    """
+    Call the Gemini API with the given prompt and model.
+    Args:
+        prompt (str): The input prompt for the Gemini API.
+        model (str): The model to use for the API call.
+    Returns:
+        str: The response from the Gemini API.
+    """
+    try:
+        # Create a GenerativeModel instance
+        model_instance = genai.GenerativeModel(model)
+        response = model_instance.generate_content(prompt)
+
+        if response and response.candidates:
+            return response.candidates[0].content.parts
+        else:
+            return "No response generated."
+
+    except Exception as e:
+        return f"Error calling Gemini API: {e}"
