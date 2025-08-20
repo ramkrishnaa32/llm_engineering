@@ -16,7 +16,7 @@ client = OpenAI(
 
 try:
     response = client.chat.completions.create(
-        model="deepseek-coder",
+        model="deepseek-chat",
         messages=[
             {"role": "system", "content": "You are a helpful assistant"},
             {"role": "user", "content": "Hello"},
@@ -28,4 +28,8 @@ except Exception as e:
     exit(1)
 
 # Print the response content
-print(response.choices[0].message.content)
+if response.choices or response.choices[0].message:
+    print(response.choices[0].message.content)
+else:
+    print("No response received.")
+    exit(1)
