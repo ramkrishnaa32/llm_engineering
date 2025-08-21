@@ -19,7 +19,7 @@ client = OpenAI(
     project=projectId
 )
 
-def call_openai(prompt, model='gpt-4o-mini'):
+def call_openai(prompt, model='gpt-4o-mini', temperature=0.0):
     """
     Call the OpenAI API with the given prompt and model.
     Args:
@@ -32,7 +32,8 @@ def call_openai(prompt, model='gpt-4o-mini'):
     try:
         response = client.chat.completions.create(
             model = model,
-            messages = prompt
+            messages = prompt,
+            temperature = temperature
         )
     except Exception as e:
         print(f"Error calling OpenAI API: {e}")

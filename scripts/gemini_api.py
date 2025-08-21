@@ -25,9 +25,14 @@ def call_gemini(prompt, model="gemini-2.5-pro"):
         response = model_instance.generate_content(prompt)
 
         if response and response.candidates:
-            return response.candidates[0].content.parts
+            return response.candidates[0].content.parts[0].text
         else:
             return "No response generated."
 
     except Exception as e:
         return f"Error calling Gemini API: {e}"
+
+
+# user_prompt = "Tell a light hearted joke for an audience of data scientists"
+# response = call_gemini(user_prompt)
+# print(f"Gemini Response: \n {response}")

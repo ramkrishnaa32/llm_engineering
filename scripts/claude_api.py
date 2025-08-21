@@ -13,7 +13,7 @@ if api_key is None:
 # Initialize the Anthropic client
 client = anthropic.Anthropic(api_key=api_key)
 
-def call_claude(prompt, model="claude-opus-4-1-20250805", max_tokens=1000):
+def call_claude(prompt, model="claude-opus-4-1-20250805", max_tokens=1000, temperature=0.0):
     """
     Call Claude API with error handling
     Args:
@@ -27,7 +27,7 @@ def call_claude(prompt, model="claude-opus-4-1-20250805", max_tokens=1000):
         message = client.messages.create(
             model=model,
             max_tokens=max_tokens,
-            temperature=0,
+            temperature=temperature,
             messages=[
                 {
                     "role": "user",
