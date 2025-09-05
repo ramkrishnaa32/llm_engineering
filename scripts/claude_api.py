@@ -14,20 +14,13 @@ if api_key is None:
 client = anthropic.Anthropic(api_key=api_key)
 
 def call_claude(prompt, model="claude-opus-4-1-20250805", max_tokens=1000, temperature=0.0):
-    """
-    Call Claude API with error handling
-    Args:
-        prompt (str): The user prompt
-        model (str): The model to use
-        max_tokens (int): Maximum tokens in response
-    Returns:
-        str: Claude's response or error message
-    """
+    system_message = "You are a helpful assistant"
     try:
         message = client.messages.create(
             model=model,
             max_tokens=max_tokens,
             temperature=temperature,
+            system=system_message,
             messages=[
                 {
                     "role": "user",
@@ -38,6 +31,33 @@ def call_claude(prompt, model="claude-opus-4-1-20250805", max_tokens=1000, tempe
         return message.content[0].text
 
     except APIError as e:
-        return f"API Error: {e}"
+        raise f"API Error: {e}"
     except Exception as e:
-        return f"Unexpected error: {e}"
+        raise f"Unexpected error: {e}"
+
+def stream_claude(prompt, model="claude-opus-4-1-20250805", max_tokens=1000, temperature=0.0):
+    system_message = "You are a helpful assistant"
+    try:
+        response = client.messages.stream(
+            model=model,
+            max_tokens=max_tokens,
+            temperature=temperature,
+            system=system_message,
+            messages=[
+                {"role": "user", "content": prompt}
+            ]
+        )
+
+        result = ""
+        with response as stream:
+            for event in stream:
+                if event.type == "content_block_delta":
+                    result += event.delta.text
+                    yield result
+
+            yield result
+
+    except APIError as e:
+        raise RuntimeError(f"API Error: {e}")
+    except Exception as e:
+        raise RuntimeError(f"Unexpected error: {e}")

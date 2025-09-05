@@ -20,23 +20,33 @@ client = OpenAI(
 )
 
 def call_openai(prompt, model='gpt-4o-mini', temperature=0.0):
-    """
-    Call the OpenAI API with the given prompt and model.
-    Args:
-        prompt (str): The input prompt for the OpenAI API.
-        model (str): The model to use for the API call.
+    system_message = "You are a helpful assistant"
+    message = [
+        {"role": "system", "content": system_message},
+        {"role": "user", "content": prompt}
+    ]
 
-    Returns:
-        str: The response from the OpenAI API.
-    """
     try:
         response = client.chat.completions.create(
             model = model,
-            messages = prompt,
+            messages = message,
             temperature = temperature
         )
-    except Exception as e:
-        print(f"Error calling OpenAI API: {e}")
-        return None
+    except Exception as error:
+        print(f"Error calling OpenAI API: {error}")
+        raise error
 
     return response.choices[0].message.content
+
+def stream_openai(messages, model="gpt-4o-mini", temperature=0.0):
+    try:
+        return client.chat.completions.create(
+            model=model,
+            messages=messages,
+            temperature=temperature,
+            stream=True
+        )
+    except Exception as error:
+        print(f"Error calling OpenAI API: {error}")
+        raise error
+
