@@ -6,7 +6,6 @@ import gradio as gr
 from dotenv import load_dotenv
 load_dotenv(override=True)
 
-
 # Initialization
 openai_api_key = os.getenv('OPENAI_API_KEY')
 if openai_api_key:
@@ -63,8 +62,6 @@ price_function = {
 
 tools = [{"type": "function", "function": price_function}]
 
-
-
 def handle_tool_call(message):
     tool_call = message.tool_calls[0]
     arguments = json.loads(tool_call.function.arguments)
@@ -90,4 +87,4 @@ def chat(message, history):
 
     return response.choices[0].message.content
 
-gr.ChatInterface(fn=chat, type="messages").launch()
+gr.ChatInterface(fn=chat, type="messages").launch(share=True)
